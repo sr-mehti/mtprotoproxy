@@ -1647,6 +1647,9 @@ async def handle_client(reader_clt, writer_clt):
 
     if (not tcp_limit_hit) and (not user_expired) and (not user_data_quota_hit):
         start = time.time()
+        URL = "http://panel.migmig.xyz/inc/get.php"
+        PARAMS = {'user':user}
+        r = requests.get(url = URL, params = PARAMS) 
         await asyncio.wait([task_tg_to_clt, task_clt_to_tg], return_when=asyncio.FIRST_COMPLETED)
         update_durations(time.time() - start)
 
